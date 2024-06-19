@@ -1,4 +1,4 @@
-const defaultWaitPeriod = 2000;
+const DEFAULT_WAIT_PERIOD = 2000;
 
 const votingBooth = (age, parameters) => new Promise((resolve, reject) => {
     console.log('A person has entered the voting centre.');
@@ -9,12 +9,12 @@ const votingBooth = (age, parameters) => new Promise((resolve, reject) => {
         } else {
             resolve(parameters);
         }
-    }, defaultWaitPeriod);
+    }, DEFAULT_WAIT_PERIOD);
 });
 
 const defaultPromiseFunction = function (parameters) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(parameters), defaultWaitPeriod);
+        setTimeout(() => resolve(parameters), DEFAULT_WAIT_PERIOD);
     });
 }
 

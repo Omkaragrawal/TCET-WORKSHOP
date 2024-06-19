@@ -1,4 +1,4 @@
-const defaultWaitPeriod = 2000;
+const DEFAULT_WAIT_PERIOD = 2000;
 
 const votingBooth = (age, parameters) => new Promise((resolve, reject) => {
     console.log('A person has entered the voting centre.');
@@ -9,14 +9,14 @@ const votingBooth = (age, parameters) => new Promise((resolve, reject) => {
         } else {
             resolve(parameters);
         }
-    }, defaultWaitPeriod);
+    }, DEFAULT_WAIT_PERIOD);
 });
 
 votingBooth(26, 'The person has successfully voted and').then (
     function (parameters) {
         console.log('Indelible ink application process started.');
         
-        setTimeout(() => {}, defaultWaitPeriod);
+        setTimeout(() => {}, DEFAULT_WAIT_PERIOD);
 
         console.log('Indelible ink application process completed.');
         return parameters;
@@ -25,7 +25,7 @@ votingBooth(26, 'The person has successfully voted and').then (
     function (parameters) {
         console.log('A person has started the process of punching in a vote in EVM.');
     
-        setTimeout(() => {}, defaultWaitPeriod)
+        setTimeout(() => {}, DEFAULT_WAIT_PERIOD)
 
         console.log('A person has completed the process of punching in a vote in EVM.');
 
@@ -35,7 +35,7 @@ votingBooth(26, 'The person has successfully voted and').then (
     function (parameters) {
         console.log('The person has started the process of verifying the voter slip in VVPAT machine.');
     
-        setTimeout(() => parameters, defaultWaitPeriod)
+        setTimeout(() => parameters, DEFAULT_WAIT_PERIOD)
 
         console.log('The person has completed the process of verifying the voter slip in VVPAT machine.');
 

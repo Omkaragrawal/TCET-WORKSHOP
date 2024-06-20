@@ -36,7 +36,7 @@ router.get('/:userId', middlewareWrapper(async function(req, res, next) {
   res.json(user);
 }));
 
-router.post('/', async function (req, res) {
+router.post('/', middlewareWrapper(async function (req, res) {
   let userData = await readFile(join(__dirname, '..', 'data', 'data.json'), 'utf8');
   userData = JSON.parse(userData);
 
@@ -54,6 +54,6 @@ router.post('/', async function (req, res) {
     res.json({});
   }
 
-})
+}))
 
 module.exports = router;

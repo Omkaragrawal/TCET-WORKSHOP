@@ -1,11 +1,11 @@
-const mongodb = require('mongodb')
+const mongoose = require('mongoose');
 
 async function connectDatabase() {
     try {
-        const mongoClient = new mongodb.MongoClient(process.env.mongo_uri);
-        const databaseConnection = await mongoClient.connect().db('tcet_database');
+        const client = await mongoose.connect(process.env.mongo_uri);
         console.log("DB connected successfully");
-        return databaseConnection;
+        return client;
+
     } catch (error) {
         console.log(error.message);
         throw error;

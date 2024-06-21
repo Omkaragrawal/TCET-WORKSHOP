@@ -40,28 +40,48 @@ router.get('/:userId', middlewareWrapper(async function(req, res, next) {
 }));
 
 router.post('/', middlewareWrapper(async function (req, res) {
-  let userData = await readFile(join(__dirname, '..', 'data', 'data.json'), 'utf8');
-  userData = JSON.parse(userData);
-  // let usersData = await UserModel.insertMany([{
-  //   name: 'ABCDEF',
-  //   email: "ajgsg@jhgags.com",
-  //   password: 'jhagshjshjabgs@jhwsh1!@jhbsdjh',
-  // }]);
-
-  if (!userData) {
-    userData = [];
-  }
-
   const reportedData = req.body;
 
   if (typeof reportedData === 'object') {
-    userData.push(reportedData);
-    res.json(reportedData);
-    // Update the file content here
+    let usersData = await UserModel.insertMany([{
+      name: reportedData.name,
+      email: reportedData.email,
+      password: reportedData.password,
+    }]);
+    
+    res.json(usersData);
   } else {
     res.json({});
   }
 
-}))
+}));
+
+router.delete('/delete', middlewareWrapper(async function (req, res) {
+  const { email } = req.body;
+
+  if (email) {
+    let usersData = await UserModel.deleteOne({ email });
+    
+    res.json(usersData);
+  } else {
+    res.json({});
+  }
+
+}));
+
+router.patch('/update', middlewareWrapper(async function (req, res) {
+  const { email, updateData } = req.body;
+
+  if (email) {
+    let usersData = await UserModel.updateOne({ email },
+      updateData,
+    );
+    
+    res.json(usersData);
+  } else {
+    res.json({});
+  }
+
+}));
 
 module.exports = router;
